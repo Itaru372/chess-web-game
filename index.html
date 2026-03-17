@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI対戦チェスサイト</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="site">
+    <header class="site-header">
+      <div class="site-header__inner container">
+        <h1 class="site-header__title">AI対戦チェスサイト</h1>
+        <nav class="site-nav" aria-label="主要ナビゲーション">
+          <ul class="site-nav__list">
+            <li class="site-nav__item"><a class="site-nav__link" href="#home">ホーム</a></li>
+            <li class="site-nav__item"><a class="site-nav__link" href="#match">対局画面</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="site-main container">
+      <section id="home" class="panel">
+        <h2 class="panel__title">ホーム画面</h2>
+
+        <div class="home-controls">
+          <button id="start-match-button" class="button button--primary" type="button">対局開始</button>
+
+          <div class="stat-card">
+            <p class="stat-card__label">現在のレーティング</p>
+            <p id="current-rating" class="stat-card__value">200</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-group__label" for="ai-level">AIレベル（1〜10）</label>
+            <input
+              id="ai-level"
+              class="field-group__input"
+              name="ai-level"
+              type="number"
+              min="1"
+              max="10"
+              value="1"
+              aria-describedby="ai-level-help"
+            />
+            <p id="ai-level-help" class="field-group__help">1から10までの整数を入力してください。</p>
+          </div>
+        </div>
+
+        <section class="subsection" aria-labelledby="record-title">
+          <h3 id="record-title" class="subsection__title">過去の対戦成績</h3>
+          <dl class="record-grid">
+            <div class="stat-card">
+              <dt class="stat-card__label">総対戦数</dt>
+              <dd id="total-games" class="stat-card__value">0</dd>
+            </div>
+            <div class="stat-card">
+              <dt class="stat-card__label">勝利数</dt>
+              <dd id="wins" class="stat-card__value">0</dd>
+            </div>
+            <div class="stat-card">
+              <dt class="stat-card__label">敗北数</dt>
+              <dd id="losses" class="stat-card__value">0</dd>
+            </div>
+            <div class="stat-card">
+              <dt class="stat-card__label">勝率</dt>
+              <dd id="win-rate" class="stat-card__value">0%</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="subsection" aria-labelledby="recent-history-title">
+          <h3 id="recent-history-title" class="subsection__title">直近の対戦履歴</h3>
+          <ul id="recent-match-history" class="history-list">
+            <li class="history-list__item">履歴はまだありません（例: 勝利 / AI Lv.3 / レーティング +18）</li>
+          </ul>
+        </section>
+      </section>
+
+      <section id="match" class="panel">
+        <h2 class="panel__title">対局画面</h2>
+
+        <div class="match-layout">
+          <section class="board-section" aria-labelledby="board-title">
+            <h3 id="board-title" class="subsection__title">チェス盤</h3>
+            <div id="chessboard" class="chessboard" role="img" aria-label="chessboard.jsで描画されるチェス盤"></div>
+          </section>
+
+          <aside class="match-sidebar">
+            <section class="subsection" aria-labelledby="captured-title">
+              <h3 id="captured-title" class="subsection__title">取られた駒のリスト</h3>
+
+              <div class="captured-group">
+                <p class="captured-group__label">あなたが取った駒</p>
+                <ul id="captured-by-user" class="captured-list" aria-label="あなたが取った駒一覧">
+                  <li class="captured-list__item">なし</li>
+                </ul>
+              </div>
+
+              <div class="captured-group">
+                <p class="captured-group__label">AIが取った駒</p>
+                <ul id="captured-by-ai" class="captured-list" aria-label="AIが取った駒一覧">
+                  <li class="captured-list__item">なし</li>
+                </ul>
+              </div>
+            </section>
+
+            <section class="subsection" aria-labelledby="score-title">
+              <h3 id="score-title" class="subsection__title">リアルタイムスコア</h3>
+              <p id="live-score" class="live-score">+0</p>
+              <p class="live-score__help">（自分が取った駒の合計 - 相手に取られた駒の合計）</p>
+            </section>
+
+            <section class="subsection" aria-labelledby="actions-title">
+              <h3 id="actions-title" class="subsection__title">操作</h3>
+              <div class="action-buttons">
+                <button id="resign-button" class="button button--danger" type="button">投了</button>
+                <button id="reset-button" class="button button--neutral" type="button">リセット</button>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner container">© AI対戦チェスサイト</div>
+    </footer>
+  </body>
+</html>
